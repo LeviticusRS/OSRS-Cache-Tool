@@ -1,0 +1,10 @@
+
+.gradle/
+
+.idea/
+
+repo/
+
+*.class
+
+build/
