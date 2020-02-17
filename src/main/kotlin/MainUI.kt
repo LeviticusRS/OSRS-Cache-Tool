@@ -14,12 +14,12 @@ import javax.swing.*
 class MainUI(title: String) : JFrame() {
     private val directory = "repo/cache/"
     private var library = CacheLibrary(directory, CacheLibraryMode.UN_CACHED)//Uncached doesn't save data in the files of an archive
-    private val configs = Paths.get("Configs")
-    private val models = Paths.get("Models")
-    private val maps = Paths.get("Maps")
-    private val decodedItems = Paths.get("DecodedItems")
-    private val decodedNpcs = Paths.get("DecodedNpcs")
-    private val decodedObjects = Paths.get("DecodedObjects")
+    private val configs = Paths.get("repo/Configs")
+    private val models = Paths.get("repo/Models")
+    private val maps = Paths.get("repo/Maps")
+    private val decodedItems = Paths.get("repo/DecodedItems")
+    private val decodedNpcs = Paths.get("repo/DecodedNpcs")
+    private val decodedObjects = Paths.get("repo/DecodedObjects")
     private val logger: Logger = Logger.getLogger("Main")
 
     init {
@@ -99,7 +99,7 @@ class MainUI(title: String) : JFrame() {
         pack()
     }
 
-    private fun createEncodedItemsDefinition(path: Path): Boolean {
+    public fun createEncodedItemsDefinition(path: Path): Boolean {
         for (itemDef in Files.walk(path, 1)) {
             if (itemDef == path) {
                 continue
@@ -256,7 +256,7 @@ class MainUI(title: String) : JFrame() {
         return true
     }
 
-    private fun createEncodedNpcsDefinition(path: Path): Boolean {
+    public fun createEncodedNpcsDefinition(path: Path): Boolean {
         for (npcDef in Files.walk(path, 1)) {
             if (npcDef == path) {
                 continue
@@ -345,7 +345,7 @@ class MainUI(title: String) : JFrame() {
         logger.info("Finished encoding npc definitions.")
         return true
     }
-    private fun createEncodedObjectsDefinition(path: Path): Boolean {
+    public fun createEncodedObjectsDefinition(path: Path): Boolean {
         for (objectDef in Files.walk(path, 1)) {
             if (objectDef == path) {
                 continue
@@ -490,7 +490,7 @@ class MainUI(title: String) : JFrame() {
         return true
     }
 
-    private fun packConfigs(path: Path, cache: CacheLibrary): Boolean {
+    public fun packConfigs(path: Path, cache: CacheLibrary): Boolean {
         val configs = cache.getIndex(2)
 
         for (configFolder in Files.walk(path, 1)) {
@@ -521,7 +521,7 @@ class MainUI(title: String) : JFrame() {
         return true
     }
 
-    private fun packModels(path: Path, cache: CacheLibrary): Boolean {
+    public fun packModels(path: Path, cache: CacheLibrary): Boolean {
         val models = cache.getIndex(7)
         for (model in Files.walk(path, 1)) {
             if (model == path) {
@@ -539,7 +539,7 @@ class MainUI(title: String) : JFrame() {
         return true
     }
 
-    private fun packMaps(path: Path, cache: CacheLibrary): Boolean {
+    public fun packMaps(path: Path, cache: CacheLibrary): Boolean {
         val maps = cache.getIndex(5)
         for (map in Files.walk(path, 1)) {
             if (map == path) {
